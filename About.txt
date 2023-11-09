@@ -1,0 +1,49 @@
+-------------------- Feature----------------------------------------------
+1. Course Related  Detail
+2. As a user If i want to get enroll than Sigin in Application and get register.
+3. Profile Management.
+4. Can Puchase the course.
+5. Payment Related Things.
+6. As a user can look multiple course and Can subscribe .
+-------------------------------------------------------------------------------
+
+--------------------------------LMS---------------------
+1. Student
+2. Admin
+
+----------------------- 1. Student---------------------
+1.user
+- Create Account
+-Login
+-Forgot  Password 
+-View Profile 
+- Edit Profile.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+2. Course 
+-View Courses.
+-View Course Details 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+3. Payment 
+-subscribe
+-Pay for course 
+-----------------------------------------------------------------------------
+
+_____________________________ Admin______________________________________________-
+1. Statics 
+2. Create the course 
+3.Login 
+4.Handle the Payment 
+5. Can Delete the course.
+6. Payment detail View List.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+------------------------------------Tech Stack-----------------------------------------
+1. MongoDB 
+2. Expres 
+3. React 
+
+4. Node Js
