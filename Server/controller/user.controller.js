@@ -36,11 +36,12 @@ const register = async (req, res, next) => {
         return next(new AppError("User registration failed. Please try again.", 400));
     }
 
-    const token = await user.generateJWTToken();
-    res.cookie('token', token, cookieOptions);
+   
 
     await user.save();
     user.password = undefined;
+    const token = await user.generateJWTToken();
+    res.cookie('token', token, cookieOptions);
 
     res.status(200).json({
         success: true,
@@ -49,7 +50,7 @@ const register = async (req, res, next) => {
     });
 }
 catch(err){
-    return next(new AppError(err.message),400)
+    return next(new AppError("Some Thing error in Registration"),400)
 }
 };
 
@@ -70,14 +71,14 @@ const login = async (req, res, next) => {
 
         const token = await user.generateJWTToken();
         user.password = undefined;
+        console.log(token)
         res.cookie('token', token, cookieOptions);
-        console.log(token);
         res.status(200).json({
             success: true,
             message: "User is logged in successfully",
         });
     } catch (err) {
-        return next(new AppError(err.message, 400));
+        return next(new AppError("Something Error in Login", 400));
     }
 };
 
@@ -96,7 +97,22 @@ const logout = (req, res) => {
 
 };
 
-const getProfile = (req, res) => {
+const getProfile =async (req, res) => {
+
+    // We wil get req.user.id from the middleware , middleware is something where we do processing before sending the request and response..
+    try{
+    const userId= req.user.id 
+    const user= await User.findById(userId);
+    res.status(200).json({
+        success:true,
+        message:'User details',
+        user
+    })
+    }
+    catch(err){
+        return next(new AppError("Failed to get profile"),400)
+    }
+
     
 };
 
