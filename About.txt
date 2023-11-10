@@ -1,53 +1,53 @@
--------------------- Feature----------------------------------------------
-1. Course Related  Detail
-2. As a user If i want to get enroll than Sigin in Application and get register.
-3. Profile Management.
-4. Can Puchase the course.
-5. Payment Related Things.
-6. As a user can look multiple course and Can subscribe .
--------------------------------------------------------------------------------
+---------------- Feature List ----------------
+1. Course-related Details
+2. User Enrollment: Sign in to the application and register.
+3. Profile Management
+4. Course Purchase
+5. Payment Processing
+6. Browse Multiple Courses and Subscribe
 
---------------------------------LMS---------------------
+---------------- LMS User Roles ----------------
 1. Student
 2. Admin
 
------------------------ 1. Student---------------------
-1.user
-- Create Account
--Login
--Forgot  Password 
--View Profile 
-- Edit Profile.
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-2. Course 
--View Courses.
--View Course Details 
+---------------- Student Role ----------------
+1. User
+   - Create Account
+   - Login
+   - Forgot Password
+   - View Profile
+   - Edit Profile
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+2. Course
+   - View Courses
+   - View Course Details
 
-3. Payment 
--subscribe
--Pay for course 
+3. Payment
+   - Subscribe
+   - Pay for Course
+
+---------------- Admin Role ----------------
+1. Statistics
+2. Create Course
+3. Login
+4. Handle Payments
+5. Delete Course
+6. View Payment Details List
+
+---------------- Tech Stack ----------------
+1. MongoDB
+2. Express
+3. React
+4. Node.js
+
+---------------- Additional Information ----------------
+- Morgan is used to monitor browser activities.
+- In the userSchema, we have implemented JWT (JSON Web Token), a URL-safe method for transferring claims between two parties.
+- JWT comprises a header, payload, and signature.
+
+I have written the Jwtttoken in userSchema Method which will generate the Signature.
+Signature means Encoded of header,payload, and Secret
+
+
+
 -----------------------------------------------------------------------------
-
-_____________________________ Admin______________________________________________-
-1. Statics 
-2. Create the course 
-3.Login 
-4.Handle the Payment 
-5. Can Delete the course.
-6. Payment detail View List.
-
------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-------------------------------------Tech Stack-----------------------------------------
-1. MongoDB 
-2. Expres 
-3. React 
-
-4. Node Js
-
-
------------------->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>..
-Morgan is used to Retrifa-border
