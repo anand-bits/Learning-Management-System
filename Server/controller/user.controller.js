@@ -4,7 +4,7 @@ import AppError from "../utils/error.utils.js";
 const cookieOptions = {
     maxAge: 7 * 24 * 60 * 60 * 1000,
     httpOnly: true,
-    secure: true,
+    secure: true
 };
 
 const register = async (req, res, next) => {
@@ -101,8 +101,8 @@ const getProfile =async (req, res) => {
 
     // We wil get req.user.id from the middleware , middleware is something where we do processing before sending the request and response..
     try{
-    const userId= req.user.id 
-    const user= await User.findById(userId);
+        
+    const user= await User.findById(req.user.id );
     res.status(200).json({
         success:true,
         message:'User details',

@@ -2,15 +2,22 @@
 
 import Jwt from "jsonwebtoken";
 import AppError from "../utils/error.utils.js";
+import { config } from 'dotenv';
+config()
+
 
 const isLoggedIn = async (req, res, next) => {
     try {
+        console.log(req.cookies);
         const { token } = req.cookies;
+        console.log(token);
+        
+
 
         if (!token) {
-            console.log("Not getting error")
             return next(new AppError("Unauthenticated User, Please Login again !!!", 401));
         }
+        
 
         // Debug: Log the received token
         console.log("Received Token:", token);

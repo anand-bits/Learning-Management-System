@@ -11,7 +11,7 @@ const connectionToDb = async () => {
             console.log(`Database is Connected with ${connection.host}`);
         }
     } catch (err) {
-        console.log(err.message);
+        console.log("Database is Creating the problem........");
         process.exit(1);
     }
 };
