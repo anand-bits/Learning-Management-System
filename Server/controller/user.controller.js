@@ -1,5 +1,8 @@
 import User from "../models/user.models.js";
 import AppError from "../utils/error.utils.js";
+import fs from 'fs/promises';
+import cloudinary from "cloudinary";
+
 
 const cookieOptions = {
     maxAge: 7 * 24 * 60 * 60 * 1000,
@@ -36,7 +39,38 @@ const register = async (req, res, next) => {
         return next(new AppError("User registration failed. Please try again.", 400));
     }
 
-   
+   // Used Multer to convert the binary data to single data and Wiill give the path from the uploads and than it will send to cloudify to get url and that url will be used For Picture...
+   if(req.file)
+   {
+    console.log(req.file)
+    try{
+
+        const result= await cloudinary.v2.uploader.upload(req.file.path,{
+            folder:"Learning Management System",
+            width:250,
+            height:250,
+            gravity:"faces",
+            crop:"fill"
+
+        });
+
+
+        if(result)
+        {
+            user.avatar.public_id=result.public_id;
+            user.avatar.secure_url=result.secure_url;
+
+            //Remove file from Server..
+
+            await fs.rm(`uploads/${req.file.filename}`)
+        }
+    }
+    catch(e)
+    {
+            return next(new AppError(e || 'File not uploaded, please try Again',500));
+
+    }
+   }
 
     await user.save();
     user.password = undefined;

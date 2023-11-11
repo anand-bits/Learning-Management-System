@@ -48,6 +48,15 @@
 I have written the Jwtttoken in userSchema Method which will generate the Signature.
 Signature means Encoded of header,payload, and Secret
 
+________________________________________________________________________________________________________
+--------------------Cloudinary-------------------------------------
+For storing the image we need the URL so that Browser will render the things.
+ In this Project we are using third Party Cloudinary.
+    // Used Multer to convert the binary data to single data and Wiill give the path from the uploads and than it will send to cloudify to get url and that url will be used For Picture...
+
+
+
+// Multer--- if we Make one middleware and taking the multiform data ,than take multiform , generate the file and send the rquest.
 
 
 -----------------------------------------------------------------------------
