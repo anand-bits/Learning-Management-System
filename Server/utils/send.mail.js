@@ -1,4 +1,8 @@
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 const sendMail = async function (email, subject, message) {
   let transporter = nodemailer.createTransport({
@@ -6,8 +10,8 @@ const sendMail = async function (email, subject, message) {
     port: 465,
     secure: true, // Set to true for secure connection
     auth: {
-      user: "anandtiwari840972@gmail.com",
-      pass: "Anand@1999",
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
     },
   });
 
@@ -16,9 +20,9 @@ const sendMail = async function (email, subject, message) {
     const info = await transporter.sendMail({
       from: 'AnandTiwari@gmail.com',
       to: email,
-      subject: subject, // Use the provided subject
-      text: message, // Use the provided message
-      html: `<b>${message}</b>`, // Use the provided message in HTML format
+      subject: subject,
+      text: message,
+      html: `<b>${message}</b>`,
     });
 
     console.log("Message sent: %s", info.messageId);
