@@ -2,6 +2,7 @@ import User from "../models/user.models.js";
 import AppError from "../utils/error.utils.js";
 import fs from 'fs/promises';
 import cloudinary from "cloudinary";
+import sendMail from "../utils/send.mail.js";
 
 
 const cookieOptions = {
@@ -150,9 +151,74 @@ const getProfile =async (req, res) => {
     
 };
 
+// Till Here Everything working................>>>>>>>>>>>>>>>>>..
+
+const forgotPassword= async(req,res,next)=>
+{
+
+ const {email}= req.body;
+ console.log(email)
+
+ if(!email)
+ {
+    return next(new AppError("Email is Required",400))
+
+ }
+
+ const user= await User.findOne({email})
+
+ if(!user)
+ {
+    return next(new AppError("Something Error in Login", 400));
+ }
+
+ // We have Created The User Password Reset Token in Models When we Use that method the token is made and that have time limit of 15 min..
+
+ const resetToken= await user.generatePasswordResetToken();
+ await user.save();
+ console.log(resetToken);
+
+ const resetPasswordURL=`${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+console.log(resetPasswordURL)
+ const message=`${resetPasswordURL}`;
+ const subject="Password Reset"
+
+ try{
+
+    
+
+    await sendMail(email,subject,message)
+    console.log(message);
+    res.status(200).json({
+        success:true,
+        message:`Reset password Token has been sent to ${email} successfully`+resetToken,
+
+
+    })
+}
+    catch(e)
+    {
+        //Suppose any error is occuring thn  we will reset previous token annd set expiry undefined
+
+        user.forgotPasswordExpiry=undefined;
+        user.forgotPasswordToken=undefined;
+
+        await user.save();
+
+        return next(new AppError(e.message),500)
+
+    }
+ }
+
+const resetPassword=()=>
+{
+
+}
+
 export {
     register,
     login,
     logout,
-    getProfile,
+    getProfile,forgotPassword,
+    resetPassword
 };

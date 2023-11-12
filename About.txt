@@ -60,3 +60,22 @@ For storing the image we need the URL so that Browser will render the things.
 
 
 -----------------------------------------------------------------------------
+
+// Forget PAssword 
+
+steps 
+1. Enter Email 
+generate URL (Token+expiry)+gmail+unique URL
++ Browser (Enter New PAssword).
+
+
+
+Part 1:-
+(a).Email> Validate in Database 
+(b).Generate new Token
+(c). Send Email with new url Containg Token
+(d). save token with expiry
+
+
+part 2.
+Get Token form url query param> Verify Token In Database> Upate PAssword in database..

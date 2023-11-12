@@ -2,6 +2,7 @@
 // How the interface will looks like......................
 
 import mongoose from "mongoose";
+import crypto from 'crypto';
 
 
 import bcrypt from "bcryptjs"
@@ -86,6 +87,16 @@ userSchema.pre('save', async function(next) {
             comparePassword:async function(plainTextPassword){
                 return await bcrypt.compare(plainTextPassword,this.password)
 
+            },
+
+            generatePasswordResetToken: async function()
+            {
+                // already Crypto is library which generate random token....
+
+                const resetToken= crypto.randomBytes(20).toString('hex');
+                this.forgotPasswordToken=crypto.createHash('sha256').update(resetToken).digest('hex');
+
+                this.forgotPasswordExpiry=Date.now()+ 15*60*1000;// 15 min for now................
             }
 
         }
