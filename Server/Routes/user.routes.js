@@ -13,8 +13,15 @@ router.post('/register',upload.single("avatar"),register)
 router.post('/login',login)
 router.get('/logout',logout)
 router.get('/me',isLoggedIn,getProfile)
+
+// This routes is not working well , we need to take care later................>>>>>>>>>>>>>
+
 router.post('/forgot/password/reset',forgotPassword)
 router.post('/reset-password/user/res',resetPassword)
+
+// Rest The work from the user is working >.........................
+
+
 
 
 

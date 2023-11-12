@@ -3,8 +3,9 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { config } from 'dotenv';
 import morgan from 'morgan';
-import router from './Routes/user.routes.js';
+import userRouter from './Routes/user.routes.js';
 import errorMiddleware from './middleware/error.middleware.js';
+import courseRoutes from './Routes/course.routes.js';
 
 config();
 
@@ -18,7 +19,9 @@ app.use(cookieParser());
 app.use(morgan('dev'));
 
 // We will define the router in Router.user.js File and app.use("/api/v1/user") is basic and rest we will define in route ---------->
-app.use('/api/v1/user', router);
+app.use('/api/v1/user', userRouter);
+
+app.use('/api/v1/courses', courseRoutes)
 
 app.use('/ping', (req, res) => {
     res.send('/pong');
