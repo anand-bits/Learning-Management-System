@@ -86,3 +86,12 @@ Get Token form url query param> Verify Token In Database> Upate PAssword in data
 
 1. we need schema for creating the Course in form Data.
 
+-----------------------------------------------------------
+
+payment Module------------>>>>>>>>>>>>>>
+
+1. Razor Key 
+2. Client 
+3 Subscribe 
+
+

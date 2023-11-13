@@ -6,6 +6,7 @@ import morgan from 'morgan';
 import userRouter from './Routes/user.routes.js';
 import errorMiddleware from './middleware/error.middleware.js';
 import courseRoutes from './Routes/course.routes.js';
+import paymentRoutes from './Routes/payment.route.js';
 
 config();
 
@@ -22,6 +23,7 @@ app.use(morgan('dev'));
 app.use('/api/v1/user', userRouter);
 
 app.use('/api/v1/courses', courseRoutes)
+app.use('/api/v1/payments',paymentRoutes)
 
 app.use('/ping', (req, res) => {
     res.send('/pong');

@@ -22,7 +22,7 @@ const isLoggedIn = async (req, res, next) => {
         // Debug: Log the received token
         console.log("Received Token:", token);
 
-        const userDetails = await Jwt.verify(token, process.env.JWT_SECRET);
+        const userDetails =  await Jwt.verify(token, process.env.JWT_SECRET);
 
         // Debug: Log the decoded user details
         console.log("Decoded User Details:", userDetails);
