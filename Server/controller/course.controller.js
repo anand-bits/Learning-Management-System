@@ -151,10 +151,68 @@ const removeCourse = async (req, res, next) => {
       return next(new AppError(e.message, 500));
     }
   };
+
+  const addLectureToCourseBYID = async (req, res, next) => {
+    try {
+      const { title, description } = req.body;
+      const { id } = req.params;
+  
+      if (!title || !description) {
+        return next(new AppError("All fields are required"), 400);
+      }
+  
+      const cleanedId = id.trim();
+      const course = await courseModel.findById(cleanedId);
+  
+      if (!course) {
+        return next(new AppError("Course with given ID doesn't exist", 404));
+      }
+  
+      const lectureData = {
+        title,
+        description,
+        lecture: {
+          public_id: "", // Initialize with an empty string
+          secure_url: "", // Initialize with an empty string
+        },
+      };
+  
+      if (req.file) {
+        const result = await cloudinary.v2.uploader.upload(req.file.path, {
+          folder: 'Learning Management System',
+        });
+        console.log(JSON.stringify(result));
+  
+        // If success
+        if (result) {
+          // Set the public_id and secure_url in the lecture object
+          lectureData.lecture.public_id = result.public_id;
+          lectureData.lecture.secure_url = result.secure_url;
+        }
+  
+        // After successful upload remove the file from local storage
+        fs.rm(`uploads/${req.file.filename}`);
+      }
+  
+      course.lectures.push(lectureData);
+      course.numberOfLectures = course.lectures.length;
+  
+      await course.save();
+  
+      res.status(200).json({
+        status: true,
+        message: "Lecture created",
+        course,
+      });
+    } 
+    catch (error) {
+      next(new AppError(error.message, 500));
+    }
+  };
   
 
 export {
   getAllCourses,
   getLectureByCourseId,
-  createCourse,updateCourse,removeCourse
+  createCourse,updateCourse,removeCourse,addLectureToCourseBYID
 };
