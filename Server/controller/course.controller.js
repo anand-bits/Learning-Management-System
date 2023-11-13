@@ -129,32 +129,29 @@ const updateCourse = async (req, res, next) => {
     }
 };
 
-
-
-const removeCourse=async(req,res,next)=>
-{
-
-    try{
-        const {id}=req.params;
-        const course= await courseModel.findById(id);
-        if(!course)
-        {
-            return next(new AppError("Course dosnt exit with this id", 500));
-        }
-
-        await course.remove();
-        res.status(200).json({
-            success:true,
-            message:"course deleted succeessfulllyy",
-            id
-        })
-
-
+const removeCourse = async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const cleanedId = id.trim();
+  
+      const course = await courseModel.findById(cleanedId);
+      if (!course) {
+        return next(new AppError("Course doesn't exist with this id", 404));
+      }
+  
+      // Use deleteOne to remove the document
+      await courseModel.deleteOne({ _id: cleanedId });
+  
+      res.status(200).json({
+        success: true,
+        message: "Course deleted successfully",
+        id: cleanedId,
+      });
+    } catch (e) {
+      return next(new AppError(e.message, 500));
     }
-    catch (e) {
-        return next(new AppError(e.message, 500));
-    } 
-}
+  };
+  
 
 export {
   getAllCourses,

@@ -8,15 +8,15 @@ const router = Router();
 // Routes for handling courses
 router.route('/')
   .get(getAllCourses)
-  .post(upload.single('thumbnail'), createCourse);
+  .post(isLoggedIn,upload.single('thumbnail'), createCourse);
 
 // Route for updating a course
 router.route('/:id')
-  .put(updateCourse);
+  .put(isLoggedIn,updateCourse);
 
 // Route for deleting a course
 router.route('/:id')
-  .delete(removeCourse);
+  .delete(isLoggedIn,removeCourse);
 
 // Route for getting lectures of a course
 router.route('/:id/lectures')
