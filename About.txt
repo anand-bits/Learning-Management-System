@@ -79,3 +79,10 @@ Part 1:-
 
 part 2.
 Get Token form url query param> Verify Token In Database> Upate PAssword in database..
+
+
+
+--------------------Create Course ----------------------------
+
+1. we need schema for creating the Course in form Data.
+
