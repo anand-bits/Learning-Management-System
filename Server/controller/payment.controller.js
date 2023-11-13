@@ -9,9 +9,10 @@ const getRazorPayAPIKey = async (req, res, next) => {
             success: true,
             message: "RazorPay Key",
             key: process.env.RAZOR_KEY_ID,
+            
         });
     } catch (error) {
-        next(error); // Pass the error to the error handling middleware
+        return next(new AppError(error.message),400); // Pass the error to the error handling middleware
     }
 };
 
