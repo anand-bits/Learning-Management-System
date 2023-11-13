@@ -2,6 +2,18 @@
 
 This repository contains the backend code for a Learning Management System (LMS). The system provides functionalities for user authentication, course management, and payment processing using RazorPay.
 
+## Tech Stack
+
+- :rocket: **Node.js:** Server-side JavaScript runtime.
+- :globe_with_meridians: **Express:** Web application framework.
+- :arrows_counterclockwise: **Cors:** Middleware for enabling CORS (Cross-Origin Resource Sharing).
+- :camera: **Multer:** Middleware for handling file uploads.
+- :cloud: **Cloudinary:** Cloud storage service for handling multimedia files.
+- :zap: **MongoDB:** NoSQL database for data storage.
+- :money_with_wings: **RazorPay:** Payment gateway integration.
+- :email: **Nodemailer:** Module for sending emails.
+- :lock: **Crypto:** Library for cryptographic functionality.
+
 ## Features
 
 ### User Authentication
@@ -19,32 +31,32 @@ This repository contains the backend code for a Learning Management System (LMS)
    - Password Reset: Users receive a unique token via email, which is used along with a new password to reset the password securely.
 
 ### Course Management
-1. :mag: **Course Viewing:**
-   - Only authenticated users can view available courses.
-   - Users can see details of each course.
+1. :mag: **Get All Courses:**
+   - Retrieve a list of all courses, excluding lecture details.
 
-2. :movie_camera: **Lecture Management:**
-   - Users can view lectures associated with a course.
-   - Admins can create new courses and update existing ones.
-   - Admins can add lectures to a course, delete lectures, and manage course content.
-   - Lecture content (e.g., video files) is handled using Multer for file uploads and Cloudinary for cloud storage.
+2. :movie_camera: **Get Lectures by Course ID:**
+   - Retrieve lectures for a specific course by providing the course ID.
+
+3. :heavy_plus_sign: **Create Course:**
+   - Create a new course with title, description, category, and creator information.
+   - Upload a course thumbnail to Cloudinary.
+
+4. :pencil2: **Update Course:**
+   - Update course details by providing the course ID and new information.
+
+5. :x: **Remove Course:**
+   - Delete a course by providing the course ID.
+
+6. :heavy_plus_sign: **Add Lecture to Course by ID:**
+   - Add a new lecture to a course by providing the course ID, lecture title, and description.
+   - Upload a lecture thumbnail to Cloudinary.
 
 ### Payment Processing
-1. :credit_card: **RazorPay Integration:**
-   - Users can create RazorPay API keys for subscription payments.
-   - Subscription creation is integrated with RazorPay, and users' subscription status is updated after verification.
-   - JWT tokens ensure secure communication during payment processes.
-
-## Tech Stack
-
-- :rocket: **Node.js:** Server-side JavaScript runtime.
-- :globe_with_meridians: **Express:** Web application framework.
-- :arrows_counterclockwise: **Cors:** Middleware for enabling CORS (Cross-Origin Resource Sharing).
-- :camera: **Multer:** Middleware for handling file uploads.
-- :cloud: **Cloudinary:** Cloud storage service for handling multimedia files.
-- :zap: **MongoDB:** NoSQL database for data storage.
-- :money_with_wings: **RazorPay:** Payment gateway integration.
-- :email: **Nodemailer:** Module for sending emails.
+1. :moneybag: **RazorPay Integration:**
+   - Retrieve RazorPay API key for client-side integration.
+   - Enable users to purchase subscriptions using RazorPay.
+   - Verify and process subscription payments securely.
+   - Allow users to cancel their subscriptions.
 
 ## Project Structure
 
@@ -68,7 +80,8 @@ The frontend of the Learning Management System is currently under development an
 
 ## Contributors
 
-- Anand Kumar
+- [Anand Kumar]
+- [h20220277@pilani.bits-pilani.ac.in]
 
 Feel free to contribute to the project by submitting issues or pull requests. For major changes, please open an issue first to discuss the proposed changes.
 
