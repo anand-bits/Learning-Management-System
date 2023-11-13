@@ -142,7 +142,18 @@ const removeCourse=async(req,res,next)=>
             return next(new AppError("Course dosnt exit with this id", 500));
         }
 
+        await course.remove();
+        res.status(200).json({
+            success:true,
+            message:"course deleted succeessfulllyy",
+            id
+        })
+
+
     }
+    catch (e) {
+        return next(new AppError(e.message, 500));
+    } 
 }
 
 export {
