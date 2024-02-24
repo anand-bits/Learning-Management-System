@@ -3,9 +3,10 @@ import { v2 } from 'cloudinary';
 import app from './app.js';
 import connectionToDb from './config/dbConnection.js';
 import Razorpay from "razorpay"
-
+import cors from "cors"
 
 const PORT = process.env.PORT || 5000;
+
 
 // Cloudinary Configuration
 v2.config({
